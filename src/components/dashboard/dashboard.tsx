@@ -158,7 +158,7 @@ export default function Dashboard() {
       case 'Academic Support':
         return <FeaturePlaceholder title="Academic Support" features={['Study Buddy (Peer Tutoring Hub)', 'Study group finder', '1-1 doubt clear with teacher', 'Trending skill dev classes (user can request)', 'Notes or info sharing section']} />;
       case 'AI & Personal Assistant':
-        return <FeaturePlaceholder title="AI & Personal Assistant" features={['AI-driven chatbot for help (“ass”)', 'Neural assistant with smart prompts', 'Personalized dashboard (self-work, internships, etc.)', 'AI-based class suggestions & notifications']} />;
+        return <FeaturePlaceholder title="AI & Personal Assistant" features={['AI-driven chatbot for help', 'Neural assistant with smart prompts', 'Personalized dashboard (self-work, internships, etc.)', 'AI-based class suggestions & notifications']} />;
       case 'Scheduling & Management':
         return <FeaturePlaceholder title="Scheduling & Management" features={['Smart class/exam/lab scheduler (TimeTablely)', 'Admin dashboard with room utilization', 'Event manager + room allotment', 'Weekly reports for batch needing reclass', 'Drag-drop planner for class adjustments']} />;
       case 'Social & Community':
