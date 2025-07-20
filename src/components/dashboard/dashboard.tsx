@@ -1,25 +1,13 @@
 'use client';
 
 import {
-  Users,
-  MessageSquare,
-  Calendar,
-  UserCheck,
   BookOpen,
-  BarChart2,
-  FileText,
-  Building,
-  AlertOctagon,
-  Bot,
-  Trophy,
-  Lightbulb,
-  MessageCircle,
   Briefcase,
-  FileJson,
-  Users2,
-  Video,
-  Rss,
+  Building,
   LayoutGrid,
+  MessageSquare,
+  Users,
+  Bot,
 } from 'lucide-react';
 import { DashboardSidebar } from './sidebar';
 import { useState } from 'react';
@@ -91,16 +79,79 @@ const posts = [
   }
 ];
 
+// Placeholder component for specific features
+const FeaturePlaceholder = ({ title }: { title: string }) => (
+    <div className="flex flex-col items-center justify-center h-96 bg-secondary/50 border-2 border-dashed border-primary/20 rounded-lg animate-slide-in-right" style={{ animationDelay: '0.2s' }}>
+        <h2 className="text-2xl font-bold text-foreground">{title}</h2>
+        <p className="text-muted-foreground">This feature is coming soon!</p>
+    </div>
+);
+
+
 export default function Dashboard() {
   const [activeCategory, setActiveCategory] = useState('All Modules');
   const [searchTerm, setSearchTerm] = useState('');
 
   const filteredPosts = posts.filter(post => {
-    const categoryMatch = activeCategory === 'All Modules' || post.category === activeCategory;
     const searchMatch = post.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
                         post.author.toLowerCase().includes(searchTerm.toLowerCase());
-    return categoryMatch && searchMatch;
+    return searchMatch;
   });
+
+  const renderContent = () => {
+    if (searchTerm) {
+       return (
+        <div className="flex flex-col gap-8">
+            {filteredPosts.map((post, index) => (
+              <PostCard
+                key={post.id}
+                post={post}
+                animationDelay={`${index * 0.1 + 0.3}s`}
+              />
+            ))}
+             {filteredPosts.length === 0 && (
+             <div className="text-center py-16 col-span-full animate-slide-in-right" style={{ animationDelay: '0.2s' }}>
+                <p className="text-muted-foreground">No posts found for your search.</p>
+            </div>
+          )}
+        </div>
+       );
+    }
+    
+    switch (activeCategory) {
+      case 'All Modules':
+        return (
+          <div className="flex flex-col gap-8">
+            <CreatePost animationDelay="0.2s" />
+            {posts.map((post, index) => (
+              <PostCard
+                key={post.id}
+                post={post}
+                animationDelay={`${index * 0.1 + 0.3}s`}
+              />
+            ))}
+          </div>
+        );
+      case 'Academics':
+        return <FeaturePlaceholder title="Academics Module" />;
+      case 'Career':
+        return <FeaturePlaceholder title="Career Services Module" />;
+      case 'Collaboration':
+        return <FeaturePlaceholder title="Collaboration Tools" />;
+      case 'Community':
+        return <FeaturePlaceholder title="Community Forum" />;
+      case 'Campus Life':
+        return <FeaturePlaceholder title="Campus Life Events" />;
+      case 'Productivity':
+        return <FeaturePlaceholder title="Productivity Tools" />;
+      default:
+        return (
+             <div className="text-center py-16 col-span-full animate-slide-in-right" style={{ animationDelay: '0.2s' }}>
+                <p className="text-muted-foreground">Select a category to get started.</p>
+            </div>
+        );
+    }
+  };
 
   return (
     <div className="flex min-h-screen bg-background text-foreground">
@@ -115,26 +166,14 @@ export default function Dashboard() {
         <div className="max-w-2xl mx-auto">
           <header className="mb-8 animate-slide-in-right" style={{ animationDelay: '0.1s' }}>
             <h1 className="text-4xl font-black tracking-tighter text-foreground" style={{ textShadow: '0 0 10px hsl(var(--primary) / 0.5)' }}>
-              Home Feed
+              {activeCategory === 'All Modules' ? 'Home Feed' : activeCategory}
             </h1>
-            <p className="mt-2 text-muted-foreground">See what's happening on campus</p>
+            <p className="mt-2 text-muted-foreground">
+              {activeCategory === 'All Modules' ? "See what's happening on campus" : `Explore the ${activeCategory} module`}
+            </p>
           </header>
 
-          <div className="flex flex-col gap-8">
-            <CreatePost animationDelay="0.2s" />
-            {filteredPosts.map((post, index) => (
-              <PostCard
-                key={post.id}
-                post={post}
-                animationDelay={`${index * 0.1 + 0.3}s`}
-              />
-            ))}
-             {filteredPosts.length === 0 && (
-             <div className="text-center py-16 col-span-full animate-slide-in-right" style={{ animationDelay: '0.2s' }}>
-                <p className="text-muted-foreground">No posts found. Try a different search term or select another category!</p>
-            </div>
-          )}
-          </div>
+          {renderContent()}
         </div>
       </main>
     </div>
