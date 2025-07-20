@@ -91,7 +91,7 @@ const FeaturePlaceholder = ({ title, features }: { title: string, features?: str
       {features && features.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {features.map((feature, index) => (
-            <Card key={index} className="bg-secondary/50 border-primary/20">
+             <Card key={index} className="bg-secondary/50 border-primary/20">
               <CardHeader>
                 <CardTitle className="text-lg font-bold tracking-tight text-foreground">{feature}</CardTitle>
               </CardHeader>
@@ -193,10 +193,10 @@ export default function Dashboard() {
         <div className="max-w-4xl mx-auto">
           <header className="mb-8 animate-slide-in-right" style={{ animationDelay: '0.1s' }}>
             <h1 className="text-4xl font-black tracking-tighter text-foreground" style={{ textShadow: '0 0 10px hsl(var(--primary) / 0.5)' }}>
-              {activeCategory === 'Home' ? 'Home Feed' : activeCategory}
+              {activeCategory === 'Home' ? 'Welcome Back, Aritra!' : activeCategory}
             </h1>
             <p className="mt-2 text-muted-foreground">
-              {activeCategory === 'Home' ? "See what's happening on campus" : `Explore the ${activeCategory} module`}
+              {activeCategory === 'Home' ? "Here's what's happening on campus today." : `Explore the ${activeCategory} module`}
             </p>
           </header>
 
