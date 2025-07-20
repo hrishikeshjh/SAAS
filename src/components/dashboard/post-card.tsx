@@ -20,6 +20,7 @@ interface Post {
   imageDataAiHint?: string;
   likes: number;
   comments: number;
+  category: string;
 }
 
 interface PostCardProps {

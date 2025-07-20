@@ -49,6 +49,7 @@ const posts = [
     imageDataAiHint: 'tech conference',
     likes: 128,
     comments: 12,
+    category: 'Academics',
   },
   {
     id: 2,
@@ -62,6 +63,7 @@ const posts = [
     imageDataAiHint: 'library study',
     likes: 74,
     comments: 8,
+    category: 'Campus Life',
   },
     {
     id: 3,
@@ -73,18 +75,32 @@ const posts = [
     content: '📢 Announcement: The deadline for project submissions for the "Innovate for Future" hackathon has been extended to this Friday, 11:59 PM. Don\'t miss out!',
     likes: 210,
     comments: 25,
+    category: 'Community',
   },
+  {
+    id: 4,
+    author: 'Career Services',
+    username: 'campusx_careers',
+    avatarUrl: 'https://placehold.co/100x100.png',
+    dataAiHint: 'office building',
+    time: '2d ago',
+    content: 'Reminder: The annual career fair is next week! Top companies are hiring for internships and full-time roles. Get your resumes ready! #CareerFair #Hiring #Internships',
+    likes: 150,
+    comments: 18,
+    category: 'Career',
+  }
 ];
 
 export default function Dashboard() {
   const [activeCategory, setActiveCategory] = useState('All Modules');
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Filtering logic can be updated later to filter posts
-  const filteredPosts = posts.filter((post) =>
-    post.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    post.author.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredPosts = posts.filter(post => {
+    const categoryMatch = activeCategory === 'All Modules' || post.category === activeCategory;
+    const searchMatch = post.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        post.author.toLowerCase().includes(searchTerm.toLowerCase());
+    return categoryMatch && searchMatch;
+  });
 
   return (
     <div className="flex min-h-screen bg-background text-foreground">
@@ -115,7 +131,7 @@ export default function Dashboard() {
             ))}
              {filteredPosts.length === 0 && (
              <div className="text-center py-16 col-span-full animate-slide-in-right" style={{ animationDelay: '0.2s' }}>
-                <p className="text-muted-foreground">No posts found. Try a different search term or start a new conversation!</p>
+                <p className="text-muted-foreground">No posts found. Try a different search term or select another category!</p>
             </div>
           )}
           </div>
