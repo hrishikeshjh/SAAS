@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Search } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface DashboardSidebarProps {
   categories: { name: string; icon: React.ReactNode }[];
@@ -14,6 +15,12 @@ interface DashboardSidebarProps {
 }
 
 export function DashboardSidebar({ categories, activeCategory, setActiveCategory, searchTerm, setSearchTerm }: DashboardSidebarProps) {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    router.push('/');
+  };
+
   return (
     <aside className="fixed top-0 left-0 h-full w-64 bg-secondary/30 border-r border-primary/20 p-4 flex-col justify-between hidden md:flex">
       <div>
@@ -95,7 +102,7 @@ export function DashboardSidebar({ categories, activeCategory, setActiveCategory
       </div>
 
        <div className="mt-auto">
-            <Button variant="outline" className="w-full">
+            <Button variant="outline" className="w-full" onClick={handleLogout}>
                 Logout
             </Button>
        </div>
