@@ -2,12 +2,19 @@
 
 import { Github } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
 export default function LoginForm() {
+  const router = useRouter();
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    router.push('/dashboard');
+  }
+
   return (
     <div className="flex h-full w-full flex-col justify-center px-8 sm:px-12 lg:px-16">
       <div className="w-full max-w-md space-y-8">
@@ -23,7 +30,7 @@ export default function LoginForm() {
           </p>
         </div>
 
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleLogin}>
           <div className="group relative animate-slide-in-right" style={{ animationDelay: '0.2s' }}>
             <Label htmlFor="username" className="mb-2 block text-sm font-medium">
               Username
