@@ -16,7 +16,7 @@ interface DashboardCardProps {
 export function DashboardCard({ title, description, icon, actionText, className, animationDelay }: DashboardCardProps) {
   return (
     <Card className={cn(
-        "bg-secondary/50 border-primary/20 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_20px_hsl(var(--primary)/0.3)] animate-slide-in-right",
+        "bg-secondary/50 border-primary/20 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_20px_hsl(var(--primary)/0.3)] animate-slide-in-right w-full",
         className
       )}
       style={{ animationDelay }}

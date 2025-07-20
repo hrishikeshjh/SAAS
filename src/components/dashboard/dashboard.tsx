@@ -187,15 +187,15 @@ export default function Dashboard() {
         setSearchTerm={setSearchTerm}
       />
       <main className="flex-1 p-4 sm:p-6 lg:p-8 ml-0 md:ml-64 transition-all duration-300">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-2xl mx-auto">
           <header className="mb-8 animate-slide-in-right" style={{ animationDelay: '0.1s' }}>
             <h1 className="text-4xl font-black tracking-tighter text-foreground" style={{ textShadow: '0 0 10px hsl(var(--primary) / 0.5)' }}>
-              CampusX Dashboard
+              CampusX Feed
             </h1>
             <p className="mt-2 text-muted-foreground">{`Showing ${filteredModules.length} modules in "${activeCategory}"`}</p>
           </header>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex flex-col gap-8">
             {filteredModules.map((module, index) => (
               <DashboardCard
                 key={module.title}
