@@ -18,8 +18,8 @@ export default function LoginForm() {
           >
             Welcome Back
           </h1>
-          <p className="mt-2 text-muted-foreground">
-            Enter your credentials to access your account.
+          <p className="mt-2 uppercase text-sm text-muted-foreground">
+            Sign in to your account
           </p>
         </div>
 
@@ -32,6 +32,7 @@ export default function LoginForm() {
               id="username"
               type="text"
               placeholder="your_username"
+              defaultValue="the_aritrabose"
               className="peer h-12 border-2 border-accent bg-input/50 shadow-[inset_0_2px_8px_0_hsl(var(--primary)/0.1)] transition-colors focus:border-primary/50"
             />
             <div className="absolute bottom-0 left-0 h-0.5 w-full origin-center scale-x-0 transform bg-primary transition-transform duration-300 group-focus-within:scale-x-100" />
@@ -46,7 +47,7 @@ export default function LoginForm() {
                 href="#"
                 className="text-sm text-primary/80 hover:text-primary hover:underline"
               >
-                Forgot Password?
+                Forget Password?
               </Link>
             </div>
             <div className="relative mt-2">
@@ -54,6 +55,7 @@ export default function LoginForm() {
                 id="password"
                 type="password"
                 placeholder="••••••••"
+                defaultValue="••••••••"
                 className="peer h-12 border-2 border-accent bg-input/50 shadow-[inset_0_2px_8px_0_hsl(var(--primary)/0.1)] transition-colors focus:border-primary/50"
               />
               <div className="absolute bottom-0 left-0 h-0.5 w-full origin-center scale-x-0 transform bg-primary transition-transform duration-300 group-focus-within:scale-x-100" />
@@ -71,8 +73,8 @@ export default function LoginForm() {
               variant="outline"
               className="w-full h-12 text-base font-bold transition-all duration-300 hover:bg-accent hover:text-accent-foreground hover:scale-105"
             >
-              <Github className="mr-2 h-5 w-5" />
-              Continue with GitHub
+              CONTINUE WITH GITHUB
+              <Github className="ml-2 h-5 w-5" />
             </Button>
           </div>
         </form>
