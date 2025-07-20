@@ -20,14 +20,14 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 
 const categories = [
   { name: 'Home', icon: <Home className="h-5 w-5" /> },
-  { name: '🎓 Academic Support', icon: <GraduationCap className="h-5 w-5" /> },
-  { name: '🧠 AI & Personal Assistant', icon: <BrainCircuit className="h-5 w-5" /> },
-  { name: '🗂 Scheduling & Management', icon: <CalendarClock className="h-5 w-5" /> },
-  { name: '💬 Social & Community', icon: <MessagesSquare className="h-5 w-5" /> },
-  { name: '🧰 Admin & Faculty Tools', icon: <Wrench className="h-5 w-5" /> },
-  { name: '📆 Calendar & Automation', icon: <CalendarDays className="h-5 w-5" /> },
-  { name: '🧪 Analytics & Dashboards', icon: <AreaChart className="h-5 w-5" /> },
-  { name: '💼 Career & Extra Tools', icon: <HardHat className="h-5 w-5" /> },
+  { name: 'Academic Support', icon: <GraduationCap className="h-5 w-5" /> },
+  { name: 'AI & Personal Assistant', icon: <BrainCircuit className="h-5 w-5" /> },
+  { name: 'Scheduling & Management', icon: <CalendarClock className="h-5 w-5" /> },
+  { name: 'Social & Community', icon: <MessagesSquare className="h-5 w-5" /> },
+  { name: 'Admin & Faculty Tools', icon: <Wrench className="h-5 w-5" /> },
+  { name: 'Calendar & Automation', icon: <CalendarDays className="h-5 w-5" /> },
+  { name: 'Analytics & Dashboards', icon: <AreaChart className="h-5 w-5" /> },
+  { name: 'Career & Extra Tools', icon: <HardHat className="h-5 w-5" /> },
 ];
 
 const posts = [
@@ -43,7 +43,7 @@ const posts = [
     imageDataAiHint: 'tech conference',
     likes: 128,
     comments: 12,
-    category: '🎓 Academic Support',
+    category: 'Academic Support',
   },
   {
     id: 2,
@@ -57,7 +57,7 @@ const posts = [
     imageDataAiHint: 'library study',
     likes: 74,
     comments: 8,
-    category: '💬 Social & Community',
+    category: 'Social & Community',
   },
     {
     id: 3,
@@ -69,7 +69,7 @@ const posts = [
     content: '📢 Announcement: The deadline for project submissions for the "Innovate for Future" hackathon has been extended to this Friday, 11:59 PM. Don\'t miss out!',
     likes: 210,
     comments: 25,
-    category: '💬 Social & Community',
+    category: 'Social & Community',
   },
   {
     id: 4,
@@ -81,7 +81,7 @@ const posts = [
     content: 'Reminder: The annual career fair is next week! Top companies are hiring for internships and full-time roles. Get your resumes ready! #CareerFair #Hiring #Internships',
     likes: 150,
     comments: 18,
-    category: '💼 Career & Extra Tools',
+    category: 'Career & Extra Tools',
   }
 ];
 
@@ -92,12 +92,12 @@ const FeaturePlaceholder = ({ title, features }: { title: string, features?: str
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {features.map((feature, index) => (
             <Card key={index} className="bg-secondary/50 border-primary/20">
-                <CardHeader>
-                    <CardTitle className="text-lg font-bold tracking-tight text-foreground">{feature}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <CardDescription className="text-muted-foreground">This feature is under development.</CardDescription>
-                </CardContent>
+              <CardHeader>
+                <CardTitle className="text-lg font-bold tracking-tight text-foreground">{feature}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-muted-foreground">This feature is under development.</CardDescription>
+              </CardContent>
             </Card>
           ))}
         </div>
@@ -155,21 +155,21 @@ export default function Dashboard() {
             ))}
           </div>
         );
-      case '🎓 Academic Support':
+      case 'Academic Support':
         return <FeaturePlaceholder title="Academic Support" features={['Study Buddy (Peer Tutoring Hub)', 'Study group finder', '1-1 doubt clear with teacher', 'Trending skill dev classes (user can request)', 'Notes or info sharing section']} />;
-      case '🧠 AI & Personal Assistant':
+      case 'AI & Personal Assistant':
         return <FeaturePlaceholder title="AI & Personal Assistant" features={['AI-driven chatbot for help (“ass”)', 'Neural assistant with smart prompts', 'Personalized dashboard (self-work, internships, etc.)', 'AI-based class suggestions & notifications']} />;
-      case '🗂 Scheduling & Management':
+      case 'Scheduling & Management':
         return <FeaturePlaceholder title="Scheduling & Management" features={['Smart class/exam/lab scheduler (TimeTablely)', 'Admin dashboard with room utilization', 'Event manager + room allotment', 'Weekly reports for batch needing reclass', 'Drag-drop planner for class adjustments']} />;
-      case '💬 Social & Community':
+      case 'Social & Community':
         return <FeaturePlaceholder title="Social & Community" features={['Online community for colleges (Reddit style)', 'Interest-based posts', 'Discuss room/chat manager', 'Alumni network page']} />;
-      case '🧰 Admin & Faculty Tools':
+      case 'Admin & Faculty Tools':
         return <FeaturePlaceholder title="Admin & Faculty Tools" features={['Faculty leave requests', 'Smart swap approvals', 'Add/remove rooms/courses', 'Admin calendar simulation']} />;
-      case '📆 Calendar & Automation':
+      case 'Calendar & Automation':
         return <FeaturePlaceholder title="Calendar & Automation" features={['Google Calendar / Outlook sync', 'Personalized calendar for students', 'Real-time updates & reminders', 'Semester, trimester support']} />;
-      case '🧪 Analytics & Dashboards':
+      case 'Analytics & Dashboards':
         return <FeaturePlaceholder title="Analytics & Dashboards" features={['Student progress dashboards', 'Teaching load tracking', 'Metrics on performance', 'Auto-generated optimized schedules']} />;
-      case '💼 Career & Extra Tools':
+      case 'Career & Extra Tools':
         return <FeaturePlaceholder title="Career & Extra Tools" features={['Freelance finder/provider', 'CV builder <21', 'Page for live class < >']} />;
       default:
         return (
@@ -196,7 +196,7 @@ export default function Dashboard() {
               {activeCategory === 'Home' ? 'Home Feed' : activeCategory}
             </h1>
             <p className="mt-2 text-muted-foreground">
-              {activeCategory === 'Home' ? "See what's happening on campus" : `Explore the ${activeCategory.substring(2)} module`}
+              {activeCategory === 'Home' ? "See what's happening on campus" : `Explore the ${activeCategory} module`}
             </p>
           </header>
 
