@@ -66,7 +66,7 @@ export function DashboardSidebar({ categories, activeCategory, setActiveCategory
         <div className="relative mb-6">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input 
-            placeholder="Search modules..." 
+            placeholder="Search" 
             className="pl-9 bg-background/50 border-primary/20 focus:border-primary/50"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
