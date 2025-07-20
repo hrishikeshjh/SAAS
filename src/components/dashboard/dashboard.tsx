@@ -1,27 +1,22 @@
 'use client';
 
 import {
-  BookOpen,
-  Briefcase,
-  Building,
-  LayoutGrid,
-  MessageSquare,
-  Users,
-  Bot,
-  GraduationCap,
+  AreaChart,
   BrainCircuit,
   CalendarClock,
-  MessagesSquare,
-  Wrench,
   CalendarDays,
-  AreaChart,
   HardHat,
   Home,
+  MessagesSquare,
+  Wrench,
+  GraduationCap
 } from 'lucide-react';
 import { DashboardSidebar } from './sidebar';
 import { useState } from 'react';
 import CreatePost from './create-post';
 import PostCard from './post-card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+
 
 const categories = [
   { name: 'Home', icon: <Home className="h-5 w-5" /> },
@@ -96,9 +91,13 @@ const FeaturePlaceholder = ({ title, features }: { title: string, features?: str
       {features && features.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {features.map((feature, index) => (
-            <Card key={index} className="bg-secondary/50 border-primary/20 p-4">
-                <CardTitle className="text-lg font-bold tracking-tight text-foreground">{feature}</CardTitle>
-                <CardDescription className="mt-2 text-muted-foreground">This feature is under development.</CardDescription>
+            <Card key={index} className="bg-secondary/50 border-primary/20">
+                <CardHeader>
+                    <CardTitle className="text-lg font-bold tracking-tight text-foreground">{feature}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <CardDescription className="text-muted-foreground">This feature is under development.</CardDescription>
+                </CardContent>
             </Card>
           ))}
         </div>
@@ -147,7 +146,7 @@ export default function Dashboard() {
         return (
           <div className="flex flex-col gap-8">
             <CreatePost animationDelay="0.2s" />
-            {posts.map((post, index) => (
+            {filteredPosts.map((post, index) => (
               <PostCard
                 key={post.id}
                 post={post}
