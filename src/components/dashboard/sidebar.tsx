@@ -30,7 +30,7 @@ export function DashboardSidebar({ categories, activeCategory, setActiveCategory
                 height="32"
                 viewBox="0 0 32 32"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://i.pinimg.com/736x/1d/1d/fa/1d1dfa34a8e8b47d9d095df13dc33e3a.jpg"
                 className="text-primary"
             >
                 <defs>
