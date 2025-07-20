@@ -8,6 +8,15 @@ import {
   MessageSquare,
   Users,
   Bot,
+  GraduationCap,
+  BrainCircuit,
+  CalendarClock,
+  MessagesSquare,
+  Wrench,
+  CalendarDays,
+  AreaChart,
+  HardHat,
+  Home,
 } from 'lucide-react';
 import { DashboardSidebar } from './sidebar';
 import { useState } from 'react';
@@ -15,13 +24,15 @@ import CreatePost from './create-post';
 import PostCard from './post-card';
 
 const categories = [
-  { name: 'All Modules', icon: <LayoutGrid className="h-5 w-5" /> },
-  { name: 'Academics', icon: <BookOpen className="h-5 w-5" /> },
-  { name: 'Career', icon: <Briefcase className="h-5 w-5" /> },
-  { name: 'Collaboration', icon: <Users className="h-5 w-5" /> },
-  { name: 'Community', icon: <MessageSquare className="h-5 w-5" /> },
-  { name: 'Campus Life', icon: <Building className="h-5 w-5" /> },
-  { name: 'Productivity', icon: <Bot className="h-5 w-5" /> },
+  { name: 'Home', icon: <Home className="h-5 w-5" /> },
+  { name: '🎓 Academic Support', icon: <GraduationCap className="h-5 w-5" /> },
+  { name: '🧠 AI & Personal Assistant', icon: <BrainCircuit className="h-5 w-5" /> },
+  { name: '🗂 Scheduling & Management', icon: <CalendarClock className="h-5 w-5" /> },
+  { name: '💬 Social & Community', icon: <MessagesSquare className="h-5 w-5" /> },
+  { name: '🧰 Admin & Faculty Tools', icon: <Wrench className="h-5 w-5" /> },
+  { name: '📆 Calendar & Automation', icon: <CalendarDays className="h-5 w-5" /> },
+  { name: '🧪 Analytics & Dashboards', icon: <AreaChart className="h-5 w-5" /> },
+  { name: '💼 Career & Extra Tools', icon: <HardHat className="h-5 w-5" /> },
 ];
 
 const posts = [
@@ -37,7 +48,7 @@ const posts = [
     imageDataAiHint: 'tech conference',
     likes: 128,
     comments: 12,
-    category: 'Academics',
+    category: '🎓 Academic Support',
   },
   {
     id: 2,
@@ -51,7 +62,7 @@ const posts = [
     imageDataAiHint: 'library study',
     likes: 74,
     comments: 8,
-    category: 'Campus Life',
+    category: '💬 Social & Community',
   },
     {
     id: 3,
@@ -63,7 +74,7 @@ const posts = [
     content: '📢 Announcement: The deadline for project submissions for the "Innovate for Future" hackathon has been extended to this Friday, 11:59 PM. Don\'t miss out!',
     likes: 210,
     comments: 25,
-    category: 'Community',
+    category: '💬 Social & Community',
   },
   {
     id: 4,
@@ -75,31 +86,44 @@ const posts = [
     content: 'Reminder: The annual career fair is next week! Top companies are hiring for internships and full-time roles. Get your resumes ready! #CareerFair #Hiring #Internships',
     likes: 150,
     comments: 18,
-    category: 'Career',
+    category: '💼 Career & Extra Tools',
   }
 ];
 
-// Placeholder component for specific features
-const FeaturePlaceholder = ({ title }: { title: string }) => (
-    <div className="flex flex-col items-center justify-center h-96 bg-secondary/50 border-2 border-dashed border-primary/20 rounded-lg animate-slide-in-right" style={{ animationDelay: '0.2s' }}>
-        <h2 className="text-2xl font-bold text-foreground">{title}</h2>
-        <p className="text-muted-foreground">This feature is coming soon!</p>
+const FeaturePlaceholder = ({ title, features }: { title: string, features?: string[] }) => (
+    <div className="flex flex-col gap-4 animate-slide-in-right" style={{ animationDelay: '0.2s' }}>
+      <h2 className="text-3xl font-bold text-foreground">{title}</h2>
+      {features && features.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {features.map((feature, index) => (
+            <Card key={index} className="bg-secondary/50 border-primary/20 p-4">
+                <CardTitle className="text-lg font-bold tracking-tight text-foreground">{feature}</CardTitle>
+                <CardDescription className="mt-2 text-muted-foreground">This feature is under development.</CardDescription>
+            </Card>
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center h-96 bg-secondary/50 border-2 border-dashed border-primary/20 rounded-lg">
+            <p className="text-muted-foreground">This feature is coming soon!</p>
+        </div>
+      )}
     </div>
 );
 
 
 export default function Dashboard() {
-  const [activeCategory, setActiveCategory] = useState('All Modules');
+  const [activeCategory, setActiveCategory] = useState('Home');
   const [searchTerm, setSearchTerm] = useState('');
 
   const filteredPosts = posts.filter(post => {
+    const categoryMatch = activeCategory === 'Home' || post.category === activeCategory;
     const searchMatch = post.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
                         post.author.toLowerCase().includes(searchTerm.toLowerCase());
-    return searchMatch;
+    return categoryMatch && searchMatch;
   });
 
   const renderContent = () => {
-    if (searchTerm) {
+    if (searchTerm && activeCategory === 'Home') {
        return (
         <div className="flex flex-col gap-8">
             {filteredPosts.map((post, index) => (
@@ -119,7 +143,7 @@ export default function Dashboard() {
     }
     
     switch (activeCategory) {
-      case 'All Modules':
+      case 'Home':
         return (
           <div className="flex flex-col gap-8">
             <CreatePost animationDelay="0.2s" />
@@ -132,18 +156,22 @@ export default function Dashboard() {
             ))}
           </div>
         );
-      case 'Academics':
-        return <FeaturePlaceholder title="Academics Module" />;
-      case 'Career':
-        return <FeaturePlaceholder title="Career Services Module" />;
-      case 'Collaboration':
-        return <FeaturePlaceholder title="Collaboration Tools" />;
-      case 'Community':
-        return <FeaturePlaceholder title="Community Forum" />;
-      case 'Campus Life':
-        return <FeaturePlaceholder title="Campus Life Events" />;
-      case 'Productivity':
-        return <FeaturePlaceholder title="Productivity Tools" />;
+      case '🎓 Academic Support':
+        return <FeaturePlaceholder title="Academic Support" features={['Study Buddy (Peer Tutoring Hub)', 'Study group finder', '1-1 doubt clear with teacher', 'Trending skill dev classes (user can request)', 'Notes or info sharing section']} />;
+      case '🧠 AI & Personal Assistant':
+        return <FeaturePlaceholder title="AI & Personal Assistant" features={['AI-driven chatbot for help (“ass”)', 'Neural assistant with smart prompts', 'Personalized dashboard (self-work, internships, etc.)', 'AI-based class suggestions & notifications']} />;
+      case '🗂 Scheduling & Management':
+        return <FeaturePlaceholder title="Scheduling & Management" features={['Smart class/exam/lab scheduler (TimeTablely)', 'Admin dashboard with room utilization', 'Event manager + room allotment', 'Weekly reports for batch needing reclass', 'Drag-drop planner for class adjustments']} />;
+      case '💬 Social & Community':
+        return <FeaturePlaceholder title="Social & Community" features={['Online community for colleges (Reddit style)', 'Interest-based posts', 'Discuss room/chat manager', 'Alumni network page']} />;
+      case '🧰 Admin & Faculty Tools':
+        return <FeaturePlaceholder title="Admin & Faculty Tools" features={['Faculty leave requests', 'Smart swap approvals', 'Add/remove rooms/courses', 'Admin calendar simulation']} />;
+      case '📆 Calendar & Automation':
+        return <FeaturePlaceholder title="Calendar & Automation" features={['Google Calendar / Outlook sync', 'Personalized calendar for students', 'Real-time updates & reminders', 'Semester, trimester support']} />;
+      case '🧪 Analytics & Dashboards':
+        return <FeaturePlaceholder title="Analytics & Dashboards" features={['Student progress dashboards', 'Teaching load tracking', 'Metrics on performance', 'Auto-generated optimized schedules']} />;
+      case '💼 Career & Extra Tools':
+        return <FeaturePlaceholder title="Career & Extra Tools" features={['Freelance finder/provider', 'CV builder <21', 'Page for live class < >']} />;
       default:
         return (
              <div className="text-center py-16 col-span-full animate-slide-in-right" style={{ animationDelay: '0.2s' }}>
@@ -163,13 +191,13 @@ export default function Dashboard() {
         setSearchTerm={setSearchTerm}
       />
       <main className="flex-1 p-4 sm:p-6 lg:p-8 ml-0 md:ml-64 transition-all duration-300">
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <header className="mb-8 animate-slide-in-right" style={{ animationDelay: '0.1s' }}>
             <h1 className="text-4xl font-black tracking-tighter text-foreground" style={{ textShadow: '0 0 10px hsl(var(--primary) / 0.5)' }}>
-              {activeCategory === 'All Modules' ? 'Home Feed' : activeCategory}
+              {activeCategory === 'Home' ? 'Home Feed' : activeCategory}
             </h1>
             <p className="mt-2 text-muted-foreground">
-              {activeCategory === 'All Modules' ? "See what's happening on campus" : `Explore the ${activeCategory} module`}
+              {activeCategory === 'Home' ? "See what's happening on campus" : `Explore the ${activeCategory.substring(2)} module`}
             </p>
           </header>
 

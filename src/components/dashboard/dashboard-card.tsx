@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 interface DashboardCardProps {
   title: string;
   description: string;
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   actionText?: string;
   className?: string;
   animationDelay: string;
@@ -23,7 +23,7 @@ export function DashboardCard({ title, description, icon, actionText, className,
     >
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <div className="flex items-center gap-4">
-          <div className="text-primary">{icon}</div>
+          {icon && <div className="text-primary">{icon}</div>}
           <CardTitle className="text-lg font-bold tracking-tight text-foreground">{title}</CardTitle>
         </div>
       </CardHeader>
